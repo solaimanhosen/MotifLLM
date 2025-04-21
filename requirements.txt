@@ -1,0 +1,6 @@
+rdkit
+torch-geometric
+torch
+
+numpy
+scipy
