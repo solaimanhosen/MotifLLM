@@ -88,5 +88,5 @@ if __name__ == "__main__":
     print("========================================")
     print(molecule_json)
 
-    with open("mol2json.json", "w") as f:
+    with open("./outputs/mol2json.json", "w") as f:
         f.write(molecule_json)

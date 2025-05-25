@@ -1,7 +1,26 @@
 # MotifLLM
 
-File for extract rings and bonds: r&b.py
+To run the project, please follow the steps below.
 
-File for mol to json representation: siles2tree.py
+## Setting up the Environment
 
-File for mol to JT: mol2tree.py
+To make your environment ready to run the project, we need to do two things:
+
+1. Install python3.
+2. Install the dependencies.
+
+To install the dependencies required for this project, run the following command in your terminal or command prompt:
+
+```bash
+pip install -r requirements.txt
+
+```
+
+## Generate JSON tree from molecules (smiles)
+
+To generate JSON tree from molecules (smiles), run the following command (You may replace the dataset with your own dataset):
+
+```bash
+python SynonymReplacementAttack.py
+
+```

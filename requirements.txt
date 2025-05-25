@@ -1,6 +1,7 @@
-rdkit
-torch-geometric
-torch
+rdkit==2025.3.2
+pydantic==2.11.5
+torch==2.7.0
+torch-geometric==2.6.1
+numpy==2.2.6
+scipy==1.15.3
 
-numpy
-scipy

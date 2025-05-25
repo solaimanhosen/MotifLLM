@@ -1,0 +1,75 @@
+{"node": "C1=CC1", "childs": []}
+{"node": "CC", "childs": [{"node": "CO", "childs": []}]}
+{"node": "CC", "childs": [{"node": "CC", "childs": [{"node": "C", "childs": [{"node": "CN", "childs": [{"node": "CN", "childs": [{"node": "C", "childs": [{"node": "C=O", "childs": []}, {"node": "CC", "childs": [{"node": "C1=CSC=N1", "childs": [{"node": "CC", "childs": [{"node": "C1CC1", "childs": []}]}]}]}]}]}]}, {"node": "CC", "childs": [{"node": "C", "childs": [{"node": "C=O", "childs": []}, {"node": "CN", "childs": [{"node": "C1COCCN1", "childs": []}]}]}]}]}]}]}
+{"node": "C=O", "childs": [{"node": "C1CCOC1", "childs": [{"node": "CS", "childs": [{"node": "CS", "childs": [{"node": "C1=NN=CN1", "childs": [{"node": "CC", "childs": [{"node": "C1=CNC=C1", "childs": [{"node": "C1=CC=CC=C1", "childs": []}]}]}, {"node": "CN", "childs": [{"node": "C1CC1", "childs": []}]}]}]}]}]}]}
+{
+  "node": "CC",
+  "childs": [
+    {
+      "node": "CN",
+      "childs": [
+        {
+          "node": "N",
+          "childs": [
+            {
+              "node": "CN",
+              "childs": []
+            },
+            {
+              "node": "NS",
+              "childs": [
+                {
+                  "node": "S",
+                  "childs": [
+                    {
+                      "node": "O=S",
+                      "childs": []
+                    },
+                    {
+                      "node": "O=S",
+                      "childs": []
+                    },
+                    {
+                      "node": "NS",
+                      "childs": [
+                        {
+                          "node": "C1CCNCC1",
+                          "childs": [
+                            {
+                              "node": "CN",
+                              "childs": [
+                                {
+                                  "node": "CN",
+                                  "childs": [
+                                    {
+                                      "node": "C1=CC=CC=C1",
+                                      "childs": [
+                                        {
+                                          "node": "CO",
+                                          "childs": [
+                                            {
+                                              "node": "CO",
+                                              "childs": []
+                                            }
+                                          ]
+                                        }
+                                      ]
+                                    }
+                                  ]
+                                }
+                              ]
+                            }
+                          ]
+                        }
+                      ]
+                    }
+                  ]
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
