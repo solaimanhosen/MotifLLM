@@ -16,6 +16,15 @@ pip install -r requirements.txt
 
 ```
 
+## Generate Motif Vocabulary from molecules (smiles)
+
+To generate Motif Vocabulary from molecules (smiles), run the following command (You may replace the dataset with your own dataset):
+
+```bash
+python motif_vocab_gen.py --data=qm9.csv
+
+```
+
 ## Generate JSON tree from molecules (smiles)
 
 To generate JSON tree from molecules (smiles), run the following command (You may replace the dataset with your own dataset):

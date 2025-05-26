@@ -1,13 +1,12 @@
 
 import argparse
 from collections import defaultdict
-import csv
 from rdkit import Chem
 from tqdm import tqdm
 import pandas as pd
 import time
 import json
-import sys
+from utils import load_smiles_from_csv
 
 from torch_geometric.datasets import QM9
 
@@ -88,7 +87,7 @@ def generate_motif_vocabulary(smiles_list, freq_threshold=10):
 
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
-    parser.add_argument('--data', default='dataset/tox21/raw/tox21.csv', help='Path to the SMILES data CSV file')
+    parser.add_argument('--data', default='qm9.csv', help='Path to the SMILES data CSV file')
     # parser.add_argument('--output', required=True, help='Path to save the motif vocabulary JSON file')
     parser.add_argument('--freq_threshold', type=int, default=10, help='Frequency threshold for motif selection (default: 10)')
     args = parser.parse_args()
@@ -99,11 +98,9 @@ if __name__ == '__main__':
 
         # Get smiles list from QM9
         smiles_list = dataset.smiles
-    elif args.data == 'sample_smiles.txt':
-        data = [mol for line in sys.stdin for mol in line.split()[:2]]
-        smiles_list = list(set(data))
     else:
-        smiles_list = load_smiles_dataset(args.data)
+        file_path = 'dataset/' + args.data
+        smiles_list = load_smiles_from_csv(file_path)
 
     start_time = time.time()
     motif_vocab = generate_motif_vocabulary(smiles_list, args.freq_threshold)
@@ -115,7 +112,8 @@ if __name__ == '__main__':
     print(f'Generated {len(motif_vocab)} motifs in {total_time:.2f} seconds')
     print(f'Average time per molecule: {avg_time_per_mol:.4f} seconds')
 
-    print(motif_vocab)
+    # print(motif_vocab)
 
-    with open('motif_vocab.json', 'w') as f:
+    with open('outputs/motif_vocab.json', 'w') as f:
         json.dump(motif_vocab, f, indent=2)
+        print('Motif Vocabulary saved successfully.')
