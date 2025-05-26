@@ -33,3 +33,13 @@ To generate JSON tree from molecules (smiles), run the following command (You ma
 python mol2json.py --data=qm9.csv
 
 ```
+
+## Generate JSON tree from molecules (smiles)
+
+To generate JSON junction tree from molecules (smiles), run the following command (You may replace the dataset with your own dataset):
+
+```bash
+python mol2JT.py --data=qm9.csv
+
+```
+
