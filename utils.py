@@ -1,10 +1,25 @@
-import rdkit
 import rdkit.Chem as Chem
 from scipy.sparse import csr_matrix
 from scipy.sparse.csgraph import minimum_spanning_tree
 from collections import defaultdict
+import pandas as pd
 
 MST_MAX_WEIGHT = 100
+
+def load_smiles_from_csv(file_path):
+    """
+    Loads SMILES strings from a CSV file.
+
+    Args:
+        file_path (str): Path to the CSV file containing SMILES strings.
+
+    Returns:
+        list: List of SMILES strings.
+    """
+    data = pd.read_csv(file_path)
+    smiles_list = data['smiles'].tolist()
+
+    return smiles_list
 
 def set_atommap(mol, num=0):
     for atom in mol.GetAtoms():

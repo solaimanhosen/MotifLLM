@@ -1,8 +1,10 @@
+import argparse
 from rdkit import Chem
 import json
 from enum import Enum
 from pydantic import BaseModel
 from typing import List
+from utils import load_smiles_from_csv
 
 # Define atom type enum
 class AtomTypeEnum(str, Enum):
@@ -82,11 +84,22 @@ def custom_json_serializer(obj):
 
 # Example usage
 if __name__ == "__main__":
-    smiles = "C1=CC1"  # Cyclopropane with a hydroxymethyl group
-    molecule = smiles_to_tree(Atom, Bond, AtomTypeEnum, smiles)
-    molecule_json = json.dumps(molecule.dict(), indent=2, default=custom_json_serializer)
-    print("========================================")
-    print(molecule_json)
+    parser = argparse.ArgumentParser()
+    parser.add_argument('--data', default='qm9.csv', help='Path to the SMILES data CSV file')
+    # parser.add_argument('--output', required=True, help='Path to save the motif vocabulary JSON file')
+    parser.add_argument('--freq_threshold', type=int, default=10, help='Frequency threshold for motif selection (default: 10)')
+    args = parser.parse_args()
+
+    file_path = 'dataset/' + args.data
+    smiles_list = load_smiles_from_csv(file_path)
+
+    mol_tree_list = []
+    for smiles in smiles_list:
+        mol_tree = smiles_to_tree(Atom, Bond, AtomTypeEnum, smiles)
+        mol_tree_list.append(mol_tree)
+
+    molecule_json = json.dumps([mol.dict() for mol in mol_tree_list], indent=2, default=custom_json_serializer)
 
     with open("./outputs/mol2json.json", "w") as f:
         f.write(molecule_json)
+        print('JSON tree saved successfully.')

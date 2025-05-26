@@ -21,6 +21,6 @@ pip install -r requirements.txt
 To generate JSON tree from molecules (smiles), run the following command (You may replace the dataset with your own dataset):
 
 ```bash
-python SynonymReplacementAttack.py
+python mol2json.py --data=qm9.csv
 
 ```
