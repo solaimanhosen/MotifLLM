@@ -80,7 +80,8 @@ def smiles_to_tree(atom_format, bond_format, atom_type_enum, smiles: str):
 def custom_json_serializer(obj):
     if isinstance(obj, Enum):
         return obj.value
-    raise TypeError("Type not serializable")
+    return obj
+    # raise TypeError("Type not serializable")
 
 # Example usage
 if __name__ == "__main__":
@@ -92,14 +93,33 @@ if __name__ == "__main__":
 
     file_path = 'dataset/' + args.data
     smiles_list = load_smiles_from_csv(file_path)
+    smiles_list = smiles_list[100:110]
+    # smiles_list = ['C1=CC1']
 
-    mol_tree_list = []
-    for smiles in smiles_list:
-        mol_tree = smiles_to_tree(Atom, Bond, AtomTypeEnum, smiles)
-        mol_tree_list.append(mol_tree)
+    # Initialize an empty dictionary to store SMILES to JSON mappings
+    smiles_to_json_map = {}
 
-    molecule_json = json.dumps([mol.dict() for mol in mol_tree_list], indent=2, default=custom_json_serializer)
+    # Iterate over the SMILES list and convert each into a JSON-serializable tree
+    for smiles_string in smiles_list:
+        # Convert SMILES to a molecule tree representation
+        molecule_tree = smiles_to_tree(Atom, Bond, AtomTypeEnum, smiles_string)
+        
+        # Serialize the molecule tree to JSON format using a custom serializer
+        serialized_tree = json.dumps(
+            molecule_tree.dict(), 
+            indent=4, 
+            default=custom_json_serializer
+        )
+        
+        # Map the SMILES string to its serialized tree in the dictionary
+        smiles_to_json_map[smiles_string] = json.loads(serialized_tree)
+
+    # Serialize the entire dictionary to JSON for further use or storage
+    all_molecules_json = json.dumps(smiles_to_json_map, indent=4)
+
+    # Example output or usage
+    # print(all_molecules_json)
 
     with open("./outputs/mol2json.json", "w") as f:
-        f.write(molecule_json)
+        f.write(all_molecules_json)
         print('JSON tree saved successfully.')

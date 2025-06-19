@@ -83,7 +83,9 @@ def tree_decomp(mol):
         a1 = bond.GetBeginAtom().GetIdx()
         a2 = bond.GetEndAtom().GetIdx()
         if not bond.IsInRing():
-            cliques.append([a1,a2])
+            cliques.append([a1, a2])
+            # cliques.append([a1])
+            # cliques.append([a2])
 
     ssr = [list(x) for x in Chem.GetSymmSSSR(mol)]
     cliques.extend(ssr)
